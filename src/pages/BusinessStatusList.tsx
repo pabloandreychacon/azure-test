@@ -25,7 +25,7 @@ export function BusinessStatusList() {
     }
   };
 
-  const handleDelete = async (id: number | string) => {
+  const handleDelete = async (id: number) => {
     try {
       await api.deleteBusinessStatus(id);
       fetchBusinessStatuses();
@@ -98,7 +98,7 @@ export function BusinessStatusList() {
                   <Link to={`/business-statuses/edit/${status.id}`} style={{ marginRight: "10px" }}>
                     Edit
                   </Link>
-                  <button onClick={() => handleDelete(status.id)} style={{ color: "red", cursor: "pointer" }}>
+                  <button onClick={() => handleDelete(status.id as number)} style={{ color: "red", cursor: "pointer" }}>
                     Delete
                   </button>
                 </td>

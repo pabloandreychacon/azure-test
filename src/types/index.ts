@@ -12,7 +12,7 @@ export interface LoginRequest {
 }
 
 export interface BusinessStatusModel {
-  id?: number | string;
+  id?: number;
   idBusiness: number | string;
   active: boolean;
   businessImageUrl?: string | null;
