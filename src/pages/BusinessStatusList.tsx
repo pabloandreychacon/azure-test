@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { api } from "../services/api";
 import type { BusinessStatusModel } from "../types";
 import { useAuth } from "../contexts/AuthContext";
+import { TestLink } from "../components/TestLink";
 
 export function BusinessStatusList() {
   const [businessStatuses, setBusinessStatuses] = useState<BusinessStatusModel[]>([]);
@@ -50,6 +51,7 @@ export function BusinessStatusList() {
     <div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
       <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", gap: "10px", alignItems: "center" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <TestLink href={`${import.meta.env.VITE_API_BASE_URL}/scalar/v1`} />
           <span style={{ marginRight: "10px" }}>Welcome, {user?.firstName} {user?.lastName}!</span>
           <Link to="/profile">
             <button style={{ padding: "5px 10px" }}>

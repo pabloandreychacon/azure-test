@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { TestLink } from "../components/TestLink";
 
 export function Login() {
   const [formData, setFormData] = useState({
@@ -93,6 +94,7 @@ export function Login() {
       <p>
         Don't have an account? <a href="/signup">Sign Up</a>
       </p>
+      <TestLink href={`${import.meta.env.VITE_API_BASE_URL}/scalar/v1`} />
     </div>
   );
 }
