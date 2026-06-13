@@ -54,7 +54,6 @@ export const api = {
   },
 
   async logout() {
-    localStorage.removeItem("authToken");
     // Optional: call logout endpoint if needed
     try {
       await fetch(`${API_BASE_URL}/postoreApi/credentials/logout`, {
@@ -64,6 +63,8 @@ export const api = {
     } catch (e) {
       // Ignore errors on logout
     }
+    // Clear token from localStorage
+    localStorage.removeItem("authToken");
   },
 
   async getMe() {
