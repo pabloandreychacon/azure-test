@@ -4,6 +4,7 @@ import { Login } from './pages/Login'
 import { BusinessStatusList } from './pages/BusinessStatusList'
 import { CreateBusinessStatus } from './pages/CreateBusinessStatus'
 import { EditBusinessStatus } from './pages/EditBusinessStatus'
+import { EditUser } from './pages/EditUser'
 import { ProtectedRoute } from './components/ProtectedRoute'
 import { useAuth } from './contexts/AuthContext'
 
@@ -40,6 +41,14 @@ function App() {
         element={
           <ProtectedRoute>
             <EditBusinessStatus />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <EditUser />
           </ProtectedRoute>
         }
       />

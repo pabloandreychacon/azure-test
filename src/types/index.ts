@@ -23,5 +23,8 @@ export interface User {
   email: string;
   name: string;
   phone: string;
+  firstName: string;
+  lastName: string;
   createdAt: string;
+  password?: string;
 }

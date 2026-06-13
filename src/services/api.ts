@@ -210,6 +210,7 @@ export const api = {
     console.log("updateImage response data:", data);
     return data;
   },
+
   async deleteBusinessStatus(id: number | string) {
     const response = await fetch(`${API_BASE_URL}/postoreApi/business/deleteBusiness/${id}`, {
       method: "DELETE",
@@ -223,4 +224,56 @@ export const api = {
     }
     return response;
   },
+
+  async updateUser(id: number | string, data: any) {
+    const response = await fetch(`${API_BASE_URL}/postoreApi/credentials/updateUser/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        ...getAuthHeaders(),
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      if (response.status === 401) {
+        localStorage.removeItem("authToken");
+      }
+      throw new Error("Failed to update user");
+    }
+    return response;
+  },
+
+  async deleteUser(id: number | string) {
+    const response = await fetch(`${API_BASE_URL}/postoreApi/credentials/deleteUser/${id}`, {
+      method: "DELETE",
+      headers: getAuthHeaders(),
+    });
+    if (!response.ok) {
+      if (response.status === 401) {
+        localStorage.removeItem("authToken");
+      }
+      throw new Error("Failed to delete user");
+    }
+    return response;
+  },
+
+  // get full user profile
+  async getFullUserProfile(id: number) {
+    const response = await fetch(`${API_BASE_URL}/postoreApi/credentials/getFullUserProfile/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        ...getAuthHeaders(),
+      },
+    });
+    if (!response.ok) {
+      if (response.status === 401) {
+        localStorage.removeItem("authToken");
+      }
+      throw new Error("Failed to get user profile");
+    }
+    return response.json();
+  },
+
+
 };

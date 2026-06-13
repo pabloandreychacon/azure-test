@@ -49,8 +49,13 @@ export function BusinessStatusList() {
   return (
     <div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
       <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", gap: "10px", alignItems: "center" }}>
-        <div>
-          <span style={{ marginRight: "10px" }}>Welcome, {user?.name}!</span>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <span style={{ marginRight: "10px" }}>Welcome, {user?.firstName} {user?.lastName}!</span>
+          <Link to="/profile">
+            <button style={{ padding: "5px 10px" }}>
+              Profile
+            </button>
+          </Link>
           <button onClick={handleLogout} style={{ padding: "5px 10px" }}>
             Logout
           </button>
