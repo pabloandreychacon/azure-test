@@ -4,6 +4,7 @@ import { api } from "../services/api";
 import type { BusinessStatusModel } from "../types";
 import { useAuth } from "../contexts/AuthContext";
 import { TestLink } from "../components/TestLink";
+import "../assets/css/PageStyles.css";
 
 export function BusinessStatusList() {
   const [businessStatuses, setBusinessStatuses] = useState<BusinessStatusModel[]>([]);
@@ -44,68 +45,68 @@ export function BusinessStatusList() {
   };
 
   if (loading) {
-    return <div style={{ padding: "20px" }}>Loading...</div>;
+    return <div className="loadingContainer">Loading...</div>;
   }
 
   return (
-    <div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
-      <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", gap: "10px", alignItems: "center" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+    <div className="pageWrapper">
+      <div className="headerFlex">
+        <div className="inlineFlex">
           <TestLink href={`${import.meta.env.VITE_API_BASE_URL}/scalar/v1`} />
-          <span style={{ marginRight: "10px" }}>Welcome, {user?.firstName} {user?.lastName}!</span>
+          <span className="marginRight10">Welcome, {user?.firstName} {user?.lastName}!</span>
           <Link to="/profile">
-            <button style={{ padding: "5px 10px" }}>
+            <button className="smallButton">
               Profile
             </button>
           </Link>
-          <button onClick={handleLogout} style={{ padding: "5px 10px" }}>
+          <button onClick={handleLogout} className="smallButton">
             Logout
           </button>
         </div>
         <h1>Business Statuses</h1>
       </div>
-      <div style={{ marginBottom: "20px" }}>
-        <Link to="/business-statuses/create" style={{ textDecoration: "none" }}>
-          <button style={{ padding: "10px 20px", backgroundColor: "#007bff", color: "white", border: "none", cursor: "pointer" }}>
+      <div className="marginBottom20">
+        <Link to="/business-statuses/create" className="linkNoDeco">
+          <button className="buttonPrimary">
             Create New Business Status
           </button>
         </Link>
       </div>
-      <table style={{ width: "100%", borderCollapse: "collapse" }}>
+      <table className="tableFull">
         <thead>
           <tr>
-            <th style={{ border: "1px solid #ddd", padding: "8px", textAlign: "left" }}>ID</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px", textAlign: "left" }}>Business ID</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px", textAlign: "left" }}>Active</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px", textAlign: "left" }}>Image</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px", textAlign: "left" }}>Actions</th>
+            <th className="tableHeaderCell">ID</th>
+            <th className="tableHeaderCell">Business ID</th>
+            <th className="tableHeaderCell">Active</th>
+            <th className="tableHeaderCell">Image</th>
+            <th className="tableHeaderCell">Actions</th>
           </tr>
         </thead>
         <tbody>
           {businessStatuses.length === 0 ? (
             <tr>
-              <td colSpan={5} style={{ border: "1px solid #ddd", padding: "8px", textAlign: "center" }}>
+              <td colSpan={5} className="centerCell">
                 No business statuses found
               </td>
             </tr>
           ) : (
             businessStatuses.map((status) => (
               <tr key={status.id}>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{status.id}</td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{status.idBusiness}</td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{status.active ? "Yes" : "No"}</td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                <td className="tableCell">{status.id}</td>
+                <td className="tableCell">{status.idBusiness}</td>
+                <td className="tableCell">{status.active ? "Yes" : "No"}</td>
+                <td className="tableCell">
                   {status.businessImageUrl ? (
-                    <img src={status.businessImageUrl} alt="Business" style={{ width: "50px", height: "50px", objectFit: "cover" }} />
+                    <img src={status.businessImageUrl} alt="Business" className="thumbnailImg" />
                   ) : (
                     "No image"
                   )}
                 </td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                  <Link to={`/business-statuses/edit/${status.id}`} style={{ marginRight: "10px" }}>
+                <td className="tableCell">
+                  <Link to={`/business-statuses/edit/${status.id}`} className="actionLink">
                     Edit
                   </Link>
-                  <button onClick={() => handleDelete(status.id as number)} style={{ color: "red", cursor: "pointer" }}>
+                  <button onClick={() => handleDelete(status.id as number)} className="deleteBtn">
                     Delete
                   </button>
                 </td>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "../assets/css/PageStyles.css";
 import { useAuth } from "../contexts/AuthContext";
 
 export function EditUser() {
@@ -57,112 +58,78 @@ export function EditUser() {
   };
 
   if (fetching) {
-    return <div style={{ padding: "20px" }}>Loading...</div>;
+    return <div className="loadingContainer">Loading...</div>;
   }
 
   return (
-    <div style={{ maxWidth: "400px", margin: "50px auto", padding: "20px" }}>
+    <div className="formContainer">
       <h1>Edit Profile</h1>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="errorText">{error}</p>}
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="fieldContainer">
           <label>First Name</label>
-          <input
+          <input className="inputField"
             type="text"
             name="firstName"
             value={formData.firstName}
             onChange={handleChange}
             required
-            style={{ width: "100%", padding: "8px", marginTop: "4px" }}
           />
         </div>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="fieldContainer">
           <label>Last Name</label>
-          <input
+          <input className="inputField"
             type="text"
             name="lastName"
             value={formData.lastName}
             onChange={handleChange}
             required
-            style={{ width: "100%", padding: "8px", marginTop: "4px" }}
           />
         </div>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="fieldContainer">
           <label>Email</label>
-          <input
+          <input className="inputField"
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
             required
-            style={{ width: "100%", padding: "8px", marginTop: "4px" }}
           />
         </div>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="fieldContainer">
           <label>Phone</label>
-          <input
+          <input className="inputField"
             type="tel"
             name="phone"
             value={formData.phone}
             onChange={handleChange}
             required
-            style={{ width: "100%", padding: "8px", marginTop: "4px" }}
           />
         </div>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="fieldContainer">
           <label>New Password</label>
-          <div style={{ position: "relative" }}>
-            <input
+          <div className="passwordWrapper">
+            <input className="inputField"
               type={showPassword ? "text" : "password"}
               name="password"
               value={formData.password}
               onChange={handleChange}
-              style={{ width: "100%", padding: "8px", marginTop: "4px", paddingRight: "40px" }}
               placeholder="Password"
             />
             <button
               type="button"
+              className="passwordToggleButton"
               onClick={() => setShowPassword(!showPassword)}
-              style={{
-                position: "absolute",
-                right: "8px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                border: "none",
-                background: "none",
-                cursor: "pointer",
-                fontSize: "14px",
-              }}
             >
               {showPassword ? "🙈" : "👁️"}
             </button>
           </div>
         </div>
         <div style={{ display: "flex", gap: "10px" }}>
-          <button
-            type="submit"
-            disabled={loading}
-            style={{
-              padding: "10px 20px",
-              backgroundColor: "#007bff",
-              color: "white",
-              border: "none",
-              cursor: loading ? "not-allowed" : "pointer",
-            }}
-          >
+          <button type="submit" disabled={loading} className="buttonPrimary">
             {loading ? "Updating..." : "Update"}
           </button>
-          <button
-            type="button"
-            onClick={() => navigate("/business-statuses")}
-            style={{
-              padding: "10px 20px",
-              backgroundColor: "#6c757d",
-              color: "white",
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
+          <button type="button" onClick={() => navigate("/business-statuses")} className="buttonSecondary">
             Cancel
           </button>
         </div>

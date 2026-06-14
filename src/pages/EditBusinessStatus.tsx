@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { api } from "../services/api";
 import type { BusinessStatusModel } from "../types";
+import { api } from "../services/api";
+import "../assets/css/PageStyles.css";
 
 export function EditBusinessStatus() {
   const { id } = useParams<{ id: string }>();
@@ -72,99 +73,75 @@ export function EditBusinessStatus() {
   };
 
   if (fetching) {
-    return <div style={{ padding: "20px" }}>Loading...</div>;
+    return <div className="loadingContainer">Loading...</div>;
   }
 
   return (
-    <div style={{ maxWidth: "400px", margin: "50px auto", padding: "20px" }}>
+    <div className="formContainer">
       <h1>Edit Business Status</h1>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="errorText">{error}</p>}
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="fieldContainer">
           <label>ID</label>
           <input
             type="number"
             name="id"
             value={formData.id || ""}
             disabled
-            style={{ width: "100%", padding: "8px", marginTop: "4px", backgroundColor: "#e9ecef" }}
+            className="inputField disabledInput"
           />
         </div>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="fieldContainer">
           <label>Business ID</label>
           <input
             type="number"
             name="idBusiness"
             value={formData.idBusiness}
             disabled
-            style={{ width: "100%", padding: "8px", marginTop: "4px", backgroundColor: "#e9ecef" }}
+            className="inputField disabledInput"
           />
         </div>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="fieldContainer">
           <label>
             <input
               type="checkbox"
               name="active"
               checked={formData.active}
               onChange={handleChange}
-              style={{ marginRight: "8px" }}
+              className="checkbox"
             />
             Active
           </label>
         </div>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="fieldContainer">
           <label>Business Image URL</label>
           <input
             type="text"
             name="businessImageUrl"
             value={formData.businessImageUrl || ""}
             disabled
-            style={{ width: "100%", padding: "8px", marginTop: "4px", backgroundColor: "#e9ecef" }}
+            className="inputField disabledInput"
           />
         </div>
         {formData.businessImageUrl && (
-          <div style={{ marginBottom: "10px" }}>
-            <img
-              src={formData.businessImageUrl}
-              alt="Current"
-              style={{ width: "100px", height: "100px", objectFit: "cover" }}
-            />
+          <div className="fieldContainer">
+            <img src={formData.businessImageUrl} alt="Current" className="thumbnailImg" />
           </div>
         )}
-        <div style={{ marginBottom: "10px" }}>
+        <div className="fieldContainer">
           <label>Or upload an image (optional)</label>
           <input
             type="file"
             accept="image/*"
             onChange={handleFileChange}
-            style={{ width: "100%", marginTop: "4px" }}
+            className="uploadInput"
           />
         </div>
-        <div style={{ display: "flex", gap: "10px" }}>
-          <button
-            type="submit"
-            disabled={loading}
-            style={{
-              padding: "10px 20px",
-              backgroundColor: "#007bff",
-              color: "white",
-              border: "none",
-              cursor: loading ? "not-allowed" : "pointer",
-            }}
-          >
+        <div className="buttonGroup">
+          <button type="submit" disabled={loading} className="buttonPrimary">
             {loading ? "Updating..." : "Update"}
           </button>
-          <button
-            type="button"
-            onClick={() => navigate("/business-statuses")}
-            style={{
-              padding: "10px 20px",
-              backgroundColor: "#6c757d",
-              color: "white",
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
+          <button type="button" onClick={() => navigate("/business-statuses")} className="buttonSecondary">
             Cancel
           </button>
         </div>

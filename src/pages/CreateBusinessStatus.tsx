@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
+import "../assets/css/PageStyles.css";
 
 export function CreateBusinessStatus() {
   const [formData, setFormData] = useState({
@@ -14,7 +15,7 @@ export function CreateBusinessStatus() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.SubmitEvent) => {
     e.preventDefault();
     setError("");
     setLoading(true);
@@ -50,11 +51,11 @@ export function CreateBusinessStatus() {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "50px auto", padding: "20px" }}>
+    <div className="formContainer">
       <h1>Create Business Status</h1>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="errorText">{error}</p>}
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="fieldContainer">
           <label>ID (optional)</label>
           <input
             disabled
@@ -63,10 +64,10 @@ export function CreateBusinessStatus() {
             name="id"
             value={formData.id}
             onChange={handleChange}
-            style={{ width: "100%", padding: "8px", marginTop: "4px" }}
+            className="inputField"
           />
         </div>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="fieldContainer">
           <label>Business ID</label>
           <input
             placeholder="Unique business ID"
@@ -75,22 +76,22 @@ export function CreateBusinessStatus() {
             value={formData.idBusiness}
             onChange={handleChange}
             required
-            style={{ width: "100%", padding: "8px", marginTop: "4px" }}
+            className="inputField"
           />
         </div>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="fieldContainer">
           <label>
             <input
               type="checkbox"
               name="active"
               checked={formData.active}
               onChange={handleChange}
-              style={{ marginRight: "8px" }}
+              className="checkbox"
             />
             Active
           </label>
         </div>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="marginBottom10">
           <label>Business Image URL (optional)</label>
           <input
             disabled
@@ -99,42 +100,30 @@ export function CreateBusinessStatus() {
             name="businessImageUrl"
             value={formData.businessImageUrl}
             onChange={handleChange}
-            style={{ width: "100%", padding: "8px", marginTop: "4px" }}
+            className="inputField disabledInput"
           />
         </div>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="marginBottom10">
           <label>Or upload an image (optional)</label>
           <input
             type="file"
             accept="image/*"
             onChange={handleFileChange}
-            style={{ width: "100%", marginTop: "4px" }}
+            className="uploadInput"
           />
         </div>
-        <div style={{ display: "flex", gap: "10px" }}>
+        <div className="buttonGroup">
           <button
             type="submit"
             disabled={loading}
-            style={{
-              padding: "10px 20px",
-              backgroundColor: "#007bff",
-              color: "white",
-              border: "none",
-              cursor: loading ? "not-allowed" : "pointer",
-            }}
+            className="buttonPrimary"
           >
             {loading ? "Creating..." : "Create"}
           </button>
           <button
             type="button"
             onClick={() => navigate("/business-statuses")}
-            style={{
-              padding: "10px 20px",
-              backgroundColor: "#6c757d",
-              color: "white",
-              border: "none",
-              cursor: "pointer",
-            }}
+            className="buttonSecondary"
           >
             Cancel
           </button>

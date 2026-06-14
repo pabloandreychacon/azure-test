@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { TestLink } from "../components/TestLink";
+import "../assets/css/PageStyles.css";
 
 export function Login() {
   const [formData, setFormData] = useState({
@@ -33,11 +34,11 @@ export function Login() {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "50px auto", padding: "20px" }}>
+    <div className="formContainer">
       <h1>Login</h1>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="errorText">{error}</p>}
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="fieldContainer">
           <label>Email</label>
           <input
             type="email"
@@ -45,51 +46,30 @@ export function Login() {
             value={formData.email}
             onChange={handleChange}
             required
-            style={{ width: "100%", padding: "8px", marginTop: "4px" }}
+            className="inputField"
           />
         </div>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="fieldContainer">
           <label>Password</label>
-          <div style={{ position: "relative" }}>
+          <div className="passwordWrapper">
             <input
               type={showPassword ? "text" : "password"}
               name="password"
               value={formData.password}
               onChange={handleChange}
               required
-              style={{ width: "100%", padding: "8px", marginTop: "4px", paddingRight: "40px" }}
+              className="inputField"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              style={{
-                position: "absolute",
-                right: "8px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                border: "none",
-                background: "none",
-                cursor: "pointer",
-                fontSize: "14px",
-              }}
+              className="passwordToggleButton"
             >
               {showPassword ? "🙈" : "👁️"}
             </button>
           </div>
         </div>
-        <button
-          type="submit"
-          disabled={loading}
-          style={{
-            padding: "10px 20px",
-            backgroundColor: "#007bff",
-            color: "white",
-            border: "none",
-            cursor: loading ? "not-allowed" : "pointer",
-          }}
-        >
-          {loading ? "Logging in..." : "Login"}
-        </button>
+        <button type="submit" disabled={loading} className="buttonPrimary">{loading ? "Logging in..." : "Login"}</button>
       </form>
       <p>
         Don't have an account? <a href="/signup">Sign Up</a>

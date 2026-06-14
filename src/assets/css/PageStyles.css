@@ -1,0 +1,102 @@
+.formContainer {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+.errorText {
+  color: red;
+}
+
+.fieldContainer {
+  margin-bottom: 10px;
+}
+
+.inputField {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  box-sizing: border-box;
+}
+
+.checkbox {
+  margin-right: 8px;
+}
+
+.uploadInput {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.buttonPrimary {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.buttonPrimary:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.buttonSecondary {
+  padding: 10px 20px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Additional shared utility classes */
+.loadingContainer { padding: 20px; text-align: center; }
+
+.pageWrapper { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+.headerFlex { display: flex; justify-content: center; flex-direction: column; gap: 10px; align-items: center; }
+
+.inlineFlex { display: flex; align-items: center; gap: 10px; }
+
+.marginRight10 { margin-right: 10px; }
+
+.smallButton { padding: 5px 10px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+
+.marginBottom20 { margin-bottom: 20px; }
+
+.linkNoDeco { text-decoration: none; }
+
+.tableFull { width: 100%; border-collapse: collapse; }
+
+.tableHeaderCell { border: 1px solid #ddd; padding: 8px; text-align: left; }
+
+.tableCell { border: 1px solid #ddd; padding: 8px; text-align: left; }
+
+.centerCell { border: 1px solid #ddd; padding: 8px; text-align: center; }
+
+.thumbnailImg { width: 50px; height: 50px; object-fit: cover; }
+
+.actionLink { margin-right: 10px; color: #007bff; text-decoration: none; }
+
+.deleteBtn { color: red; cursor: pointer; background: none; border: none; padding: 0; }
+
+.disabledInput { background-color: #e9ecef; }
+
+.buttonGroup { display: flex; gap: 10px; }
+
+.marginBottom10 { margin-bottom: 10px; }
+
+.passwordToggleButton {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.passwordWrapper {
+  position: relative;
+}
