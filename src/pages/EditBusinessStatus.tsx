@@ -49,10 +49,10 @@ export function EditBusinessStatus() {
         imageUrl = updateResponse.businessImageUrl || imageUrl;
       }
 
-      /* await api.updateBusinessStatus(formData.id!, {
+      await api.updateBusinessStatus(formData.id!, {
         ...formData,
         businessImageUrl: imageUrl || null,
-      }); */
+      });
       navigate("/business-statuses");
     } catch (err) {
       setError("Failed to update business status. Please try again.");
