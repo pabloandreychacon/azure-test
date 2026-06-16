@@ -1,5 +1,11 @@
 {
   "navigationFallback": {
     "rewrite": "/index.html"
-  }
+  },
+  "routes": [
+    {
+      "route": "/postoreApi/**",
+      "rewrite": "https://postore-api-g3g4eqaxheeretbf.canadacentral-01.azurewebsites.net/postoreApi/{*path}"
+    }
+  ]
 }
