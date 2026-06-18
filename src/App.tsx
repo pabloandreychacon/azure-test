@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { Signup } from './pages/Signup'
 import { Login } from './pages/Login'
 import { BusinessStatusList } from './pages/BusinessStatusList'
@@ -10,8 +10,9 @@ import { useAuth } from './contexts/AuthContext'
 
 function App() {
   const { user, loading } = useAuth()
+  const location = useLocation()
 
-  if (loading) {
+  if (loading && location.pathname !== '/login') {
     return <div style={{ padding: '20px' }}>Loading...</div>
   }
 
